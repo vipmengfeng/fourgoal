@@ -68,6 +68,7 @@ private static void nums(String n,int s,int e){
 		}
 		put();
 		ms.s("3210个数范围锁定后");
+		result(0);
 }
 //上轮结果相同位置相同数字 个数范围1-3
 private static void lst(){
@@ -86,6 +87,7 @@ private static void lst(){
 	}
 	put();
 	ms.s("上轮结果相同位置相同数字 个数范围1-3：");
+	result(0);
 }
 //列奇偶判断 f 为1时 判断奇数，f为其他时 判断偶数
 private static void jiou(int arr[],int f){
@@ -111,6 +113,7 @@ private static void jiou(int arr[],int f){
 	
 	put();
 	ms.s("对列进行奇偶设定筛选后：");
+	result(0);
 }
 //平局排除
 private static void ping(int a,int b){
@@ -122,6 +125,7 @@ private static void ping(int a,int b){
 	}
 	put();
 	ms.s("对单独场次进行平局排除后：");
+	result(0);
 }
 //胜平
 private static void sp(int a,int b){
@@ -135,6 +139,7 @@ private static void sp(int a,int b){
 	}
 	put();
 	ms.s("对单独场次进行31筛选后：");
+	result(1);
 }
 
 
@@ -143,8 +148,9 @@ private static void result(int r){
 	for(int i=0;i<dataArray.size();i++){
 		ms.s(dataArray.get(i));
 	 }
-	}
 	ms.s("result：");
+	}
+	
 	ms.s(dataArray.size());
 }
 // 重新将过滤后的结果赋值给dataArray
