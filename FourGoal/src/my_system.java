@@ -127,7 +127,9 @@ public void s(float str){
             	str2 = bfr2.readLine();
             }
          bfr2.close(); 
-        }catch(IOException f2){}
+        }catch(IOException f2){
+        	s("dd");
+        }
 		return dataArray;
 	}
 
