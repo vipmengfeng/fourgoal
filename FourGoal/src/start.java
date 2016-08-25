@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class start {
-	 public static String[] str1 = { "3","2", "1"};
+	 public static String[] str1 = { "2", "1"};
 	 public static String[] str2 = { "3","2", "1"};
-	 public static String[] str3 = { "3","2", "1"};
-	 public static String[] str4 = { "3","2", "1","0"};
+	 public static String[] str3 = { "2", "1"};
+	 public static String[] str4 = { "2", "1","0"};
 	 public static String[] str5 = { "2", "1","0"};
 	 public static String[] str6 = { "2", "1","0"};
 	 public static String[] str7 = { "3","2", "1"};
@@ -49,31 +49,22 @@ public static void main(String[] args){
 	nums("2",1,3);
 	nums("1",1,4);
 	nums("0",1,3);
-	lst();
-	int arr[]={2,4,6,8};//奇数列
-	int arrs[]={1,5,6};//偶数列
-	//jiou(arr,1);
+	lst();//上轮结果相同位置相同数字 个数范围1-3
+	int arr[]={2,8};//包含奇数列
+	int arrs[]={1,5,6};//包含偶数列
+	jiou(arr,1);
 	//jiou(arrs,0);
 	ping(2,3);
-	
+	ping(4,5);
 	ping(7,8);
 	//ping(5,6);
-	san("123","101");
-	san("123","031");
-	san("123","010");
-	san("123","121");
-	san("678","110");
-	san("345","120");
-	san("345","130");
-	san("345","101");
-	san("678","131");
-	san("456","002");
-	san("456","011");
+	
 	sp(3,4);
 	sp(1,2);
 	sp(7,8);
-	left_e();
-	lishipc();
+	left_e();//斜向相同数字范围1-3
+	last_f();//最近四轮任意三场重复排除
+	lishipc();//历史排除
 	
 	
 	
@@ -240,6 +231,73 @@ private static void lishi(){
 	}
 	
 }
+//
+private static void last_f(){
+	dataArrays.clear();
+	for(int i=0;i<dataArray.size();i++){
+		int count=0;
+		
+		String str1=dataArray.get(i).substring(0, 3);
+		String str2=dataArray.get(i).substring(1, 4);
+		String str3=dataArray.get(i).substring(2,5);
+		String str4=dataArray.get(i).substring(3,6);
+		String str5=dataArray.get(i).substring(4,7);
+		//String str6=datafile.get(i).substring(5,7);
+		for(int j=i+1;j<i+4;j++){
+			
+			String strs1=datafile.get(j).substring(0,3);
+			String strs2=datafile.get(j).substring(1,4);
+			String strs3=datafile.get(j).substring(2,5);
+			String strs4=datafile.get(j).substring(3,6);
+			String strs5=datafile.get(j).substring(4,7);
+			
+			
+			if(str1.equals(strs1)||str2.equals(strs2)||str3.equals(strs3)||str4.equals(strs4)||str5.equals(strs5)){
+				count++;
+				
+			}
+		}
+		if(count==0){
+			dataArrays.add(dataArray.get(i));
+		}
+		
+	}
+	put();
+	ms.s("last_f");
+	result(1);
+}
+
+//
+private static void test(){
+	
+	for(int i=0;i<datafile.size()-12;i++){
+		int count=0;
+		//ms.s(datafile.get(i).length());
+		String str1=datafile.get(i).substring(0, 3);
+		String str2=datafile.get(i).substring(1, 4);
+		String str3=datafile.get(i).substring(2,5);
+		String str4=datafile.get(i).substring(3,6);
+		String str5=datafile.get(i).substring(4,7);
+		//String str6=datafile.get(i).substring(5,7);
+		for(int j=i+1;j<i+4;j++){
+			
+			String strs1=datafile.get(j).substring(0,3);
+			String strs2=datafile.get(j).substring(1,4);
+			String strs3=datafile.get(j).substring(2,5);
+			String strs4=datafile.get(j).substring(3,6);
+			String strs5=datafile.get(j).substring(4,7);
+			
+			
+			if(str1.equals(strs1)||str2.equals(strs2)||str3.equals(strs3)||str4.equals(strs4)||str5.equals(strs5)){
+				count++;
+				
+			}
+		}
+		ms.s(datafile.get(i)+"======"+count);
+	}
+	
+}
+
 
 private static void result(int r){
 	if(r==1){
