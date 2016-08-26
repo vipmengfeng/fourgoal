@@ -44,13 +44,14 @@ public static void main(String[] args){
 	}
 	put();
 	
-	test();
-	nums("3",1,2);
-	nums("2",2,4);
+	//test();
+	nums("3",0,3);
+	nums("2",1,4);
 	nums("1",2,4);
 	nums("0",1,3);
-	contains(4,5,6,"0","0");//456场包含0
-	contains(6,7,8,"2","3");//678场包含2或3
+	test_ou();
+	//contains(4,5,6,"0","0");//456场包含0
+	//contains(6,7,8,"2","3");//678场包含2或3
 	lst();//上轮结果相同位置相同数字 个数范围1-3
 	//int arr[]={2,8};//包含奇数列
 	int arrs[]={1,5,6};//包含偶数列
@@ -69,6 +70,7 @@ public static void main(String[] args){
 	//lishipc();//历史排除
 	
 	
+	//test_ji();
 	
 	}
 //3210的个数范围
@@ -262,7 +264,7 @@ private static void last_f(){
 		String str4=dataArray.get(i).substring(3,6);
 		String str5=dataArray.get(i).substring(4,7);
 		//String str6=datafile.get(i).substring(5,7);
-		for(int j=i+1;j<i+50;j++){
+		for(int j=0;j<51;j++){
 			
 			String strs1=datafile.get(j).substring(0,3);
 			String strs2=datafile.get(j).substring(1,4);
@@ -316,7 +318,65 @@ private static void test(){
 	}
 	
 }
+//奇数列
+private static void test_ji(){
+	for(int i=0;i<datafile.size()-52;i++){
+		if(!datafile.get(i).contains("*")){
+		int a1=Integer.parseInt(ms.cutNumber(datafile.get(i),1));
+		int a2=Integer.parseInt(ms.cutNumber(datafile.get(i),3));
+		int a3=Integer.parseInt(ms.cutNumber(datafile.get(i),5));
+		int a4=Integer.parseInt(ms.cutNumber(datafile.get(i),7));
+		int b1=Integer.parseInt(ms.cutNumber(datafile.get(i),2));
+		int b2=Integer.parseInt(ms.cutNumber(datafile.get(i),4));
+		int b3=Integer.parseInt(ms.cutNumber(datafile.get(i),6));
+		int b4=Integer.parseInt(ms.cutNumber(datafile.get(i),8));
+		
+			if (a1%2!=0&&a2%2!=0&&a3%2!=0&&a4%2!=0){
+				//奇数列都是奇数
+				ms.s(i);
+			}else if(b1%2==0&&b2%2==0&&b3%2==0&&b4%2==0){
+				ms.s(i);
+				
+			}
+		
+		}
+	}
+	
+}
 
+//奇数列
+private static void test_ou(){
+	dataArrays.clear();
+	ms.s(dataArray.size()+".......");
+	for(int i=0;i<dataArray.size();i++){
+		//if(!datafile.get(i).contains("*")){
+		int a1=Integer.parseInt(ms.cutNumber(dataArray.get(i),1));
+		int a2=Integer.parseInt(ms.cutNumber(dataArray.get(i),3));
+		int a3=Integer.parseInt(ms.cutNumber(dataArray.get(i),5));
+		int a4=Integer.parseInt(ms.cutNumber(dataArray.get(i),7));
+		int b1=Integer.parseInt(ms.cutNumber(dataArray.get(i),2));
+		int b2=Integer.parseInt(ms.cutNumber(dataArray.get(i),4));
+		int b3=Integer.parseInt(ms.cutNumber(dataArray.get(i),6));
+		int b4=Integer.parseInt(ms.cutNumber(dataArray.get(i),8));
+		
+			if (a1%2!=0&&a2%2!=0&&a3%2!=0&&a4%2!=0){
+				//奇数列都是奇数
+				//ms.s(i);
+				dataArrays.add(dataArray.get(i));
+			}else if(b1%2==0&&b2%2==0&&b3%2==0&&b4%2==0){
+				//ms.s(i);
+				dataArrays.add(dataArray.get(i));
+				
+			}else {
+				//dataArrays.add(dataArray.get(i));
+			}
+		
+		//}
+	}
+	put();
+	ms.s("奇偶列奇偶排除：");
+	result(1);
+}
 
 private static void result(int r){
 	if(r==1){
