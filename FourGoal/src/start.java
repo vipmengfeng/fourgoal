@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
 public class start {
-	 public static String[] str1 = { "2", "1"};
-	 public static String[] str2 = { "3","2", "1"};
-	 public static String[] str3 = { "2", "1"};
-	 public static String[] str4 = { "2", "1","0"};
+	 public static String[] str1 = { "3","2","0"};
+	 public static String[] str2 = {  "1","0"};
+	 public static String[] str3 = { "3","2", "1","0"};
+	 public static String[] str4 = {  "1","0"};
 	 public static String[] str5 = { "2", "1","0"};
-	 public static String[] str6 = { "2", "1","0"};
-	 public static String[] str7 = { "3","2", "1"};
-	 public static String[] str8 = { "2", "1","0" };
+	 public static String[] str6 = { "3","2", "1"};
+	 public static String[] str7 = { "3","2", "1","0"};
+	 public static String[] str8 = { "2", "1" };
 	 static ArrayList<String> dataArray = new ArrayList<String> ();
 	 static ArrayList<String> dataArrays = new ArrayList<String> ();
 	 static ArrayList<String> datafile = new ArrayList<String> ();
 	 static ArrayList<String> datafile2 = new ArrayList<String> ();
-	 static String last ="10033110";
+	 static String last ="30121101";
 	 static my_system ms= new my_system();
 public static void main(String[] args){
 	
@@ -44,27 +44,29 @@ public static void main(String[] args){
 	}
 	put();
 	
-	
+	//test();
 	nums("3",1,2);
-	nums("2",1,3);
-	nums("1",1,4);
+	nums("2",2,4);
+	nums("1",2,4);
 	nums("0",1,3);
+	contains(4,5,6,"0");//456场包含0
+	contains(6,7,8,"2");//678场包含2
 	lst();//上轮结果相同位置相同数字 个数范围1-3
 	int arr[]={2,8};//包含奇数列
 	int arrs[]={1,5,6};//包含偶数列
-	jiou(arr,1);
+	//jiou(arr,1);
 	//jiou(arrs,0);
-	ping(2,3);
-	ping(4,5);
+//	ping(2,3);
+//	ping(4,5);
+	ping(1,2);
 	ping(7,8);
-	//ping(5,6);
 	
 	sp(3,4);
-	sp(1,2);
-	sp(7,8);
+	sp(1,2);//胜平锁定
+	//sp(7,8);
 	left_e();//斜向相同数字范围1-3
 	last_f();//最近四轮任意三场重复排除
-	lishipc();//历史排除
+	//lishipc();//历史排除
 	
 	
 	
@@ -181,7 +183,7 @@ private static void san(String a,String b){
 	result(0);
 }
 
-//斜向相同数字范围1-3
+//斜向相同数字范围2-4
 private static void left_e(){
 	dataArrays.clear();
 	for(int i=0;i<dataArray.size();i++){
@@ -197,7 +199,7 @@ private static void left_e(){
 				count++;
 			}
 		}
-		if(count>=1&&count<=3){
+		if(count>=2&&count<=4){
 			dataArrays.add(dataArray.get(i));
 		}
 	}
@@ -216,6 +218,21 @@ private static void lishipc(){
 	put();
 	ms.s("历史排除后");
 	result(1);
+}//任意三场包含
+private  static void contains(int a,int b,int c,String d){
+	dataArrays.clear();
+	for(int i=0;i<dataArray.size();i++){
+		String a1=ms.cutNumber(dataArray.get(i), a);
+		String a2=ms.cutNumber(dataArray.get(i), b);
+		String a3=ms.cutNumber(dataArray.get(i), c);
+		if(a1.equals(d)||a2.equals(d)||a3.equals(d)){
+			dataArrays.add(dataArray.get(i));
+		}
+		
+	}
+	put();
+	ms.s("任意三场包含");
+	result(0);
 }
 private static void lishi(){
 	for(int i=0;i<datafile.size()-1;i++){
@@ -243,7 +260,7 @@ private static void last_f(){
 		String str4=dataArray.get(i).substring(3,6);
 		String str5=dataArray.get(i).substring(4,7);
 		//String str6=datafile.get(i).substring(5,7);
-		for(int j=i+1;j<i+4;j++){
+		for(int j=i+1;j<i+10;j++){
 			
 			String strs1=datafile.get(j).substring(0,3);
 			String strs2=datafile.get(j).substring(1,4);
@@ -257,7 +274,7 @@ private static void last_f(){
 				
 			}
 		}
-		if(count==0){
+		if(count==0||count==1){
 			dataArrays.add(dataArray.get(i));
 		}
 		
@@ -279,7 +296,7 @@ private static void test(){
 		String str4=datafile.get(i).substring(3,6);
 		String str5=datafile.get(i).substring(4,7);
 		//String str6=datafile.get(i).substring(5,7);
-		for(int j=i+1;j<i+4;j++){
+		for(int j=i+1;j<i+10;j++){
 			
 			String strs1=datafile.get(j).substring(0,3);
 			String strs2=datafile.get(j).substring(1,4);
