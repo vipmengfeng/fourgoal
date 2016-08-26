@@ -248,7 +248,7 @@ private static void lishi(){
 	}
 	
 }
-//
+//与前10轮相比，任意连续三场有相同数字出现的范围是0-1
 private static void last_f(){
 	dataArrays.clear();
 	for(int i=0;i<dataArray.size();i++){
