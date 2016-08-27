@@ -132,5 +132,22 @@ public void s(float str){
         }
 		return dataArray;
 	}
+	
+	public int search(String strTarget, String strSearch) {
+		int result = 0;
+		String strCheck = new String(strTarget);
+		for (int i = 0; i < strTarget.length();) {
+		//System.out.println(i);
+		int loc = strCheck.indexOf(strSearch);
+		if (loc == -1) {
+		break;
+		} else {
+		result++;
+		i = loc + strSearch.length();
+		strCheck = strCheck.substring(i);
+		}
+		}
+		return result;
+		}
 
 }

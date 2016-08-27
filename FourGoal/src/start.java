@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
 public class start {
-	 public static String[] str1 = { "3","2","1","0"};
-	 public static String[] str2 = { "3","2","1","0"};
+	 public static String[] str1 = { "3","2"};
+	 public static String[] str2 = { "1","0"};
 	 public static String[] str3 = { "3","2","1","0"};
-	 public static String[] str4 = { "3","2","1","0"};
-	 public static String[] str5 = { "3","2","1","0"};
-	 public static String[] str6 = { "3","2","1","0"};
-	 public static String[] str7 = { "3","2","1","0"};
+	 public static String[] str4 = { "2","1","0"};
+	 public static String[] str5 = { "2","1","0"};
+	 public static String[] str6 = { "3","2","1"};
+	 public static String[] str7 = { "2","1","0"};
 	 public static String[] str8 = { "3","2","1","0"};
 	 static ArrayList<String> dataArray = new ArrayList<String> ();
 	 static ArrayList<String> dataArrays = new ArrayList<String> ();
 	 static ArrayList<String> datafile = new ArrayList<String> ();
 	 static ArrayList<String> datafile2 = new ArrayList<String> ();
-	 static String last ="30121101";
+	 static String last ="11211111";
 	 static my_system ms= new my_system();
 public static void main(String[] args){
 	
@@ -45,13 +45,16 @@ public static void main(String[] args){
 	put();
 	
 	//test();
-	nums("3",0,3);
-	nums("2",1,4);
-	nums("1",2,4);
+	dipei(1, 2, 3, 4, 6, 5, 8, 7);//最低赔率出现次数最少为1
+	nums("3",1,3);
+	nums("2",1,3);
+	nums("1",1,4);
 	nums("0",1,3);
-	test_ou();
+	contains_two();//3210个数中出现两次的数字 范围是1-2
+	//test_ji();
+	//test_ou();
 	//contains(4,5,6,"0","0");//456场包含0
-	//contains(6,7,8,"2","3");//678场包含2或3
+	contains(6,7,8,"2","3");//678场包含2或3
 	lst();//上轮结果相同位置相同数字 个数范围1-3
 	//int arr[]={2,8};//包含奇数列
 	int arrs[]={1,5,6};//包含偶数列
@@ -60,19 +63,40 @@ public static void main(String[] args){
 //	ping(2,3);
 //	ping(4,5);
 	ping(1,2);//平局排除
-	//ping(7,8);
+	ping(7,8);
 	
-	sp(3,4);
+	//sp(3,4);
 	sp(1,2);//胜平锁定
-	//sp(7,8);
-	left_e();//斜向相同数字范围1-3
-	last_f();//最近50轮任意三场重复范围2-5
+	sp(8,7);
+	sp(3,4);
+	left_e();//斜向相同数字范围2-9
+	last_f();//最近50轮任意三场重复范围2-6
 	//lishipc();//历史排除
 	
 	
 	//test_ji();
 	
 	}
+//最低赔率出现次数
+private static void dipei(int a,int b,int c,int d,int e,int f,int g,int h){
+	dataArrays.clear();
+	for(int i=0;i<dataArray.size();i++){
+		int c1=Integer.parseInt(ms.cutNumber(dataArray.get(i), a));
+		int c2=Integer.parseInt(ms.cutNumber(dataArray.get(i), b));
+		int c3=Integer.parseInt(ms.cutNumber(dataArray.get(i), c));
+		int c4=Integer.parseInt(ms.cutNumber(dataArray.get(i), d));
+		int c5=Integer.parseInt(ms.cutNumber(dataArray.get(i), e));
+		int c6=Integer.parseInt(ms.cutNumber(dataArray.get(i), f));
+		int c7=Integer.parseInt(ms.cutNumber(dataArray.get(i), g));
+		int c8=Integer.parseInt(ms.cutNumber(dataArray.get(i), h));
+		if(c1>c2||c3>c4||c5>c6||c7>c8){
+			dataArrays.add(dataArray.get(i));
+		}
+	}
+	put();
+	ms.s("最低赔率出现次数至少为1");
+	result(0);
+}
 //3210的个数范围
 private static void nums(String n,int s,int e){
 	
@@ -201,7 +225,7 @@ private static void left_e(){
 				count++;
 			}
 		}
-		if(count>=2&&count<=4){
+		if(count>=2&&count<=9){
 			dataArrays.add(dataArray.get(i));
 		}
 	}
@@ -220,7 +244,39 @@ private static void lishipc(){
 	put();
 	ms.s("历史排除后");
 	result(1);
-}//任意三场包含
+}
+//3210个数中出现两次的数字 范围是1-2
+private static void contains_two(){
+	dataArrays.clear();
+	for(int i=0;i<dataArray.size();i++){
+		int count=0;
+		int a=ms.search( dataArray.get(i),"3");
+		int b=ms.search( dataArray.get(i),"2");
+		int c=ms.search( dataArray.get(i),"1");
+		int d=ms.search( dataArray.get(i),"0");
+		if(a==2){
+			count++;
+		}
+		if(b==2){
+			count++;
+		}
+		if(c==2){
+			count++;
+		}
+		if(d==2){
+			count++;
+		}
+		if(count>=1&&count<=2){
+			dataArrays.add(dataArray.get(i));
+			
+		}
+		
+	}
+	put();
+	ms.s("3210个数2必定出现排除后");
+	result(0);
+}
+//任意三场包含
 private  static void contains(int a,int b,int c,String d,String e){
 	dataArrays.clear();
 	for(int i=0;i<dataArray.size();i++){
@@ -278,7 +334,7 @@ private static void last_f(){
 				
 			}
 		}
-		if(count>1&&count<6){
+		if(count>1&&count<7){
 			dataArrays.add(dataArray.get(i));
 		}
 		
@@ -335,6 +391,7 @@ private static void test_ji(){
 				//奇数列都是奇数
 				ms.s(i);
 			}else if(b1%2==0&&b2%2==0&&b3%2==0&&b4%2==0){
+				//偶数列都是偶数
 				ms.s(i);
 				
 			}
