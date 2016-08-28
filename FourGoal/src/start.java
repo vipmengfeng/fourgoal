@@ -70,7 +70,7 @@ public static void main(String[] args){
 	//sp(8,7);
 	//sp(3,4);
 	left_e();//斜向相同数字范围1-4
-	last_f();//最近50轮任意三场重复范围2-6
+	last_f();//最近50轮任意三场重复范围2-6 并且不含上轮的4
 	//lishipc();//历史排除
 	
 	
