@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
 public class start {
-	 public static String[] str1 = { "3","2"};
-	 public static String[] str2 = { "1","0"};
+	 public static String[] str1 = { "3","2","1","0"};
+	 public static String[] str2 = { "3","2","1","0"};
 	 public static String[] str3 = { "3","2","1","0"};
 	 public static String[] str4 = { "2","1","0"};
-	 public static String[] str5 = { "2","1","0"};
-	 public static String[] str6 = { "3","2","1"};
-	 public static String[] str7 = { "2","1","0"};
+	 public static String[] str5 = { "3","2","1","0"};
+	 public static String[] str6 = { "3","2","1","0"};
+	 public static String[] str7 = { "3","2","1"};
 	 public static String[] str8 = { "3","2","1","0"};
 	 static ArrayList<String> dataArray = new ArrayList<String> ();
 	 static ArrayList<String> dataArrays = new ArrayList<String> ();
 	 static ArrayList<String> datafile = new ArrayList<String> ();
 	 static ArrayList<String> datafile2 = new ArrayList<String> ();
-	 static String last ="11211111";
+	 static String last ="30101301";
 	 static my_system ms= new my_system();
 public static void main(String[] args){
 	
@@ -31,7 +31,7 @@ public static void main(String[] args){
 	ms.s(dataArray.size());
 	datafile.clear();
 	datafile2.clear();
-	datafile=ms.ReadDatas("/Users/meng/Documents/fourgoal/FourGoal/src/four.txt", datafile);
+	datafile=ms.ReadDatas("src/four.txt", datafile);
 	datafile2=datafile;
 	ms.s(datafile.size());
 	//lishi();
@@ -45,16 +45,16 @@ public static void main(String[] args){
 	put();
 	
 	//test();
-	dipei(1, 2, 3, 4, 6, 5, 8, 7);//最低赔率出现次数最少为1
-	nums("3",1,3);
-	nums("2",1,3);
+	dipei(2, 1, 3, 4, 5, 6, 7, 8);//最低赔率出现次数最少为1
+	nums("3",0,2);
+	nums("2",1,2);
 	nums("1",1,4);
 	nums("0",1,3);
 	contains_two();//3210个数中出现两次的数字 范围是1-2
 	//test_ji();
 	//test_ou();
 	//contains(4,5,6,"0","0");//456场包含0
-	contains(6,7,8,"2","3");//678场包含2或3
+	//contains(6,7,8,"2","3");//678场包含2或3
 	lst();//上轮结果相同位置相同数字 个数范围1-3
 	//int arr[]={2,8};//包含奇数列
 	int arrs[]={1,5,6};//包含偶数列
@@ -63,13 +63,13 @@ public static void main(String[] args){
 //	ping(2,3);
 //	ping(4,5);
 	ping(1,2);//平局排除
-	ping(7,8);
-	
+	//ping(7,8);
+	ping_c(1,2,3,4,5,6,7,8);//包含平局的场次
 	//sp(3,4);
-	sp(1,2);//胜平锁定
-	sp(8,7);
-	sp(3,4);
-	left_e();//斜向相同数字范围2-9
+	//sp(1,2);//胜平锁定
+	//sp(8,7);
+	//sp(3,4);
+	left_e();//斜向相同数字范围1-4
 	last_f();//最近50轮任意三场重复范围2-6
 	//lishipc();//历史排除
 	
@@ -81,6 +81,7 @@ public static void main(String[] args){
 private static void dipei(int a,int b,int c,int d,int e,int f,int g,int h){
 	dataArrays.clear();
 	for(int i=0;i<dataArray.size();i++){
+		int count=0;
 		int c1=Integer.parseInt(ms.cutNumber(dataArray.get(i), a));
 		int c2=Integer.parseInt(ms.cutNumber(dataArray.get(i), b));
 		int c3=Integer.parseInt(ms.cutNumber(dataArray.get(i), c));
@@ -89,7 +90,20 @@ private static void dipei(int a,int b,int c,int d,int e,int f,int g,int h){
 		int c6=Integer.parseInt(ms.cutNumber(dataArray.get(i), f));
 		int c7=Integer.parseInt(ms.cutNumber(dataArray.get(i), g));
 		int c8=Integer.parseInt(ms.cutNumber(dataArray.get(i), h));
-		if(c1>c2||c3>c4||c5>c6||c7>c8){
+		if(c1>c2){
+			count++;
+		}
+		if(c3>c4){
+			count++;
+		}
+		if(c5>c6){
+			count++;
+		}
+		if(c7>c8){
+			count++;
+		}
+		//最低赔出现的个数
+		if(count>=2){
 			dataArrays.add(dataArray.get(i));
 		}
 	}
@@ -168,6 +182,34 @@ private static void ping(int a,int b){
 	ms.s("对单独场次进行平局排除后：");
 	result(0);
 }
+//平局包含
+private static void ping_c(int a,int b,int c,int d,int e,int f,int g,int h){
+	dataArrays.clear();
+	for(int i=0;i<dataArray.size();i++){
+		int count = 0;
+		if(ms.cutNumber(dataArray.get(i), a).equals(ms.cutNumber(dataArray.get(i), b))){
+			count++;
+		}
+		if(ms.cutNumber(dataArray.get(i), c).equals(ms.cutNumber(dataArray.get(i), d))){
+			count++;
+		}
+		if(ms.cutNumber(dataArray.get(i), e).equals(ms.cutNumber(dataArray.get(i), f))){
+			count++;
+		}
+		if(ms.cutNumber(dataArray.get(i), g).equals(ms.cutNumber(dataArray.get(i), h))){
+			count++;
+		}
+		
+		if(count>=1){
+			
+			dataArrays.add(dataArray.get(i));
+		}
+	}
+	put();
+	ms.s("对场次进行平局包含排除后：");
+	result(0);
+	
+}
 //胜平
 private static void sp(int a,int b){
 	dataArrays.clear();
@@ -225,7 +267,7 @@ private static void left_e(){
 				count++;
 			}
 		}
-		if(count>=2&&count<=9){
+		if(count>=1&&count<=4){
 			dataArrays.add(dataArray.get(i));
 		}
 	}
@@ -334,7 +376,7 @@ private static void last_f(){
 				
 			}
 		}
-		if(count>1&&count<7){
+		if(count>1&&count<7&&count!=4){
 			dataArrays.add(dataArray.get(i));
 		}
 		
