@@ -4,16 +4,16 @@ public class start {
 	 public static String[] str1 = { "3","2","1","0"};
 	 public static String[] str2 = { "3","2","1","0"};
 	 public static String[] str3 = { "3","2","1","0"};
-	 public static String[] str4 = { "2","1","0"};
+	 public static String[] str4 = { "3","2","1","0"};
 	 public static String[] str5 = { "3","2","1","0"};
-	 public static String[] str6 = { "3","2","1","0"};
-	 public static String[] str7 = { "3","2","1"};
+	 public static String[] str6 = { "2","1","0"};
+	 public static String[] str7 = { "3","2","1","0"};
 	 public static String[] str8 = { "3","2","1","0"};
 	 static ArrayList<String> dataArray = new ArrayList<String> ();
 	 static ArrayList<String> dataArrays = new ArrayList<String> ();
 	 static ArrayList<String> datafile = new ArrayList<String> ();
 	 static ArrayList<String> datafile2 = new ArrayList<String> ();
-	 static String last ="30101301";
+	 static String last ="00202221";
 	 static my_system ms= new my_system();
 public static void main(String[] args){
 	
@@ -35,46 +35,52 @@ public static void main(String[] args){
 	datafile2=datafile;
 	ms.s(datafile.size());
 	//lishi();
-	//断点范围5-6
+	//断点4或者6 偶数判断法
 	for(int i=0;i<dataArray.size();i++){
 		int dd=ms.dd(dataArray.get(i));
-		if(dd<=6&&dd>=5){
+		if(dd==4||dd==6){
 			dataArrays.add(dataArray.get(i));
 		}
 	}
 	put();
-	
 	//test();
-	dipei(2, 1, 3, 4, 5, 6, 7, 8);//最低赔率出现次数最少为1
+	dipei(1, 2, 4, 3, 5, 6, 7, 8);//最低赔率出现次数最少为1
+	zhusheng(1,2,3,4,5,6,7,8);//主胜1-3个
 	nums("3",0,2);
-	nums("2",1,2);
-	nums("1",1,4);
-	nums("0",1,3);
-	contains_two();//3210个数中出现两次的数字 范围是1-2
+	nums("2",0,4);
+	nums("1",0,3);
+	nums("0",0,4);
+	//ping(1,8);
+	
+	contains_two();//3210个数中出现两次的数字 范围是-0-1
 	//test_ji();
 	//test_ou();
-	//contains(4,5,6,"0","0");//456场包含0
+	//contains(8,5,6,7,"0","0");//456场包含0
+	//contains(8,5,6,7,"2","2");//456场包含0
 	//contains(6,7,8,"2","3");//678场包含2或3
-	lst();//上轮结果相同位置相同数字 个数范围1-3
-	//int arr[]={2,8};//包含奇数列
-	int arrs[]={1,5,6};//包含偶数列
+	lst();//上轮结果相同位置相同数字 个数范围0-3
+	//int arr[]={1,3};//包含奇数列
+	//int arrs[]={5,6,7,8};//包含偶数列
 	//jiou(arr,1);
-	jiou(arrs,0);
-//	ping(2,3);
+	//jiou(arrs,0);
+		//ping(4,3);
 //	ping(4,5);
-	ping(1,2);//平局排除
-	//ping(7,8);
+	//ping(2,3);//平局排除
 	ping_c(1,2,3,4,5,6,7,8);//包含平局的场次
 	//sp(3,4);
-	//sp(1,2);//胜平锁定
-	//sp(8,7);
+	//sp(7,8);//胜平锁定
+	//sp(2,1);
 	//sp(3,4);
-	left_e();//斜向相同数字范围1-4
+	hezhi(10);//奇数
+	//jianjuhezhi(10);
+	left_e();//斜向相同数字范围2-6
 	last_f();//最近50轮任意三场重复范围2-6 并且不含上轮的4
 	//lishipc();//历史排除
 	
 	
 	//test_ji();
+	
+	//jianjuhezhi(10);
 	
 	}
 //最低赔率出现次数
@@ -103,14 +109,50 @@ private static void dipei(int a,int b,int c,int d,int e,int f,int g,int h){
 			count++;
 		}
 		//最低赔出现的个数
-		if(count>=2){
+		if(count>=1&&count<4){
 			dataArrays.add(dataArray.get(i));
 		}
 	}
 	put();
-	ms.s("最低赔率出现次数至少为1");
+	ms.s("最低赔率出现次数至少为2");
 	result(0);
 }
+//主胜出现次数
+private static void zhusheng(int a,int b,int c,int d,int e,int f,int g,int h){
+	dataArrays.clear();
+	for(int i=0;i<dataArray.size();i++){
+		int count=0;
+		int c1=Integer.parseInt(ms.cutNumber(dataArray.get(i), a));
+		int c2=Integer.parseInt(ms.cutNumber(dataArray.get(i), b));
+		int c3=Integer.parseInt(ms.cutNumber(dataArray.get(i), c));
+		int c4=Integer.parseInt(ms.cutNumber(dataArray.get(i), d));
+		int c5=Integer.parseInt(ms.cutNumber(dataArray.get(i), e));
+		int c6=Integer.parseInt(ms.cutNumber(dataArray.get(i), f));
+		int c7=Integer.parseInt(ms.cutNumber(dataArray.get(i), g));
+		int c8=Integer.parseInt(ms.cutNumber(dataArray.get(i), h));
+		if(c1>c2){
+			count++;
+		}
+		if(c3>c4){
+			count++;
+		}
+		if(c5>c6){
+			count++;
+		}
+		if(c7>c8){
+			count++;
+		}
+		//最低赔出现的个数
+		if(count>=1&&count<4){
+			dataArrays.add(dataArray.get(i));
+		}
+	}
+	put();
+	ms.s("主胜出现次数至少为1");
+	result(0);
+}
+
+
 //3210的个数范围
 private static void nums(String n,int s,int e){
 	
@@ -251,7 +293,7 @@ private static void san(String a,String b){
 	result(0);
 }
 
-//斜向相同数字范围2-4
+//斜向相同数字范围2-6
 private static void left_e(){
 	dataArrays.clear();
 	for(int i=0;i<dataArray.size();i++){
@@ -267,7 +309,7 @@ private static void left_e(){
 				count++;
 			}
 		}
-		if(count>=1&&count<=4){
+		if(count>=2&&count<=6){
 			dataArrays.add(dataArray.get(i));
 		}
 	}
@@ -292,10 +334,14 @@ private static void contains_two(){
 	dataArrays.clear();
 	for(int i=0;i<dataArray.size();i++){
 		int count=0;
+		int count_z=0;
 		int a=ms.search( dataArray.get(i),"3");
 		int b=ms.search( dataArray.get(i),"2");
 		int c=ms.search( dataArray.get(i),"1");
 		int d=ms.search( dataArray.get(i),"0");
+		
+//		ms.s(dataArray.get(i));
+//		ms.s(a);
 		if(a==2){
 			count++;
 		}
@@ -308,8 +354,24 @@ private static void contains_two(){
 		if(d==2){
 			count++;
 		}
-		if(count>=1&&count<=2){
+		///////////////////////////////////////////
+		if(a==0){
+			count_z++;
+		}
+		if(b==0){
+			count_z++;
+		}
+		if(c==0){
+			count_z++;
+		}
+		if(d==0){
+			count_z++;
+		}
+		//ms.s("vvvvvvvvvvvvv"+count_z);
+		if(count>=0&&count<=1){
+			
 			dataArrays.add(dataArray.get(i));
+			
 			
 		}
 		
@@ -319,13 +381,15 @@ private static void contains_two(){
 	result(0);
 }
 //任意三场包含
-private  static void contains(int a,int b,int c,String d,String e){
+private  static void contains(int a,int b,int c,int c2,String d,String e){
 	dataArrays.clear();
 	for(int i=0;i<dataArray.size();i++){
 		String a1=ms.cutNumber(dataArray.get(i), a);
 		String a2=ms.cutNumber(dataArray.get(i), b);
 		String a3=ms.cutNumber(dataArray.get(i), c);
-		if(a1.equals(d)||a2.equals(d)||a3.equals(d)){
+		String a4=ms.cutNumber(dataArray.get(i), c2);
+		
+		if(a1.equals(d)||a2.equals(d)||a3.equals(d)||a4.equals(d)){
 			dataArrays.add(dataArray.get(i));
 		}else if(a1.equals(e)||a2.equals(e)||a3.equals(e)){
 			dataArrays.add(dataArray.get(i));
@@ -333,7 +397,7 @@ private  static void contains(int a,int b,int c,String d,String e){
 		
 	}
 	put();
-	ms.s("任意三场包含");
+	ms.s("任意4场包含");
 	result(0);
 }
 private static void lishi(){
@@ -376,7 +440,7 @@ private static void last_f(){
 				
 			}
 		}
-		if(count>1&&count<7&&count!=4){
+		if(count>1&&count<7){
 			dataArrays.add(dataArray.get(i));
 		}
 		
@@ -441,6 +505,60 @@ private static void test_ji(){
 		}
 	}
 	
+}
+//和值计算
+private static void hezhi(int h){
+	dataArrays.clear();
+	for(int i=0;i<dataArray.size();i++){
+		
+		int a1=Integer.parseInt(ms.cutNumber(dataArray.get(i),1));
+		int a2=Integer.parseInt(ms.cutNumber(dataArray.get(i),3));
+		int a3=Integer.parseInt(ms.cutNumber(dataArray.get(i),5));
+		int a4=Integer.parseInt(ms.cutNumber(dataArray.get(i),7));
+		int b1=Integer.parseInt(ms.cutNumber(dataArray.get(i),2));
+		int b2=Integer.parseInt(ms.cutNumber(dataArray.get(i),4));
+		int b3=Integer.parseInt(ms.cutNumber(dataArray.get(i),6));
+		int b4=Integer.parseInt(ms.cutNumber(dataArray.get(i),8));
+		
+		int hz=a1+a2+a3+a4+b1+b2+b3+b4;
+			if (hz%2!=0&&hz<15){
+				//和值为奇数
+				dataArrays.add(dataArray.get(i));
+				ms.s(a1+a2+a3+a4+b1+b2+b3+b4);
+				
+			}
+		
+		
+	}
+	put();
+	ms.s("和值排除：");
+	result(0);
+	
+}
+//间距和值计算
+private static void jianjuhezhi(int h){
+	dataArrays.clear();
+	for(int i=0;i<dataArray.size();i++){
+		int num=0;
+		int rnum=0;
+		for(int j=1;j<8;j++){
+			int a1=Integer.parseInt(ms.cutNumber(dataArray.get(i),j));
+			int b1=Integer.parseInt(ms.cutNumber(dataArray.get(i),j+1));
+			num=Math.abs(a1-b1);
+			rnum+=num;
+		}
+		if(rnum%2==0){
+			
+			dataArrays.add(dataArray.get(i));
+		}
+			//ms.s(rnum);
+		
+		
+	}
+	
+	put();
+	ms.s("间距和值为奇数：");
+	result(0);
 }
 
 //奇数列

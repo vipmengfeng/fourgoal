@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class my_system {
 	
 	/**
-	 * ��ϵͳ���
-	 * @s(String str) ���str
-	 * @author ��
+	 * 锟斤拷系统锟斤拷锟�
+	 * @s(String str) 锟斤拷锟絪tr
+	 * @author 锟斤拷
 	 * @since 2015.5.17
 	 */
 	public void s(String str){
@@ -46,9 +46,9 @@ public void s(float str){
 		 }
 	 }
 	/**
-	 * ��ȡstr��num����ݷ���
-	 * @param str ����Ҫ���д�����ַ�
-	 * @param num ����Ҫ��ȡ�ĵڼ�������
+	 * 锟斤拷取str锟斤拷num锟斤拷锟斤拷莘锟斤拷锟�
+	 * @param str 锟斤拷锟斤拷要锟斤拷锟叫达拷锟斤拷锟斤拷址锟�
+	 * @param num 锟斤拷锟斤拷要锟斤拷取锟侥第硷拷锟斤拷锟斤拷锟斤拷
 	 * @return
 	 */
 	public String cutNumber(String str,int num)
@@ -67,8 +67,8 @@ public void s(float str){
 	}
 	
 	/**
-	 * �Զ����к������
-	 * @param args �������Զ���������϶�ɵ�Integer����
+	 * 锟皆讹拷锟斤拷锟叫猴拷锟斤拷锟斤拷锟�
+	 * @param args 锟斤拷锟斤拷锟斤拷锟皆讹拷锟斤拷锟斤拷锟斤拷锟斤拷隙锟缴碉拷Integer锟斤拷锟斤拷
 	 */
 	public ArrayList<String> CustomResult(Integer[] args,ArrayList<String> AL)
 	{
@@ -92,8 +92,8 @@ public void s(float str){
 		
 	}
 	/**
-	 * �ϵ����
-	 * @param str Ҫ������ַ�
+	 * 锟较碉拷锟斤拷锟�
+	 * @param str 要锟斤拷锟斤拷锟斤拷址锟�
 	 */
 	public int dd(String str)
 	{
@@ -140,7 +140,9 @@ public void s(float str){
 		//System.out.println(i);
 		int loc = strCheck.indexOf(strSearch);
 		if (loc == -1) {
-		break;
+			break;
+			
+		//break;
 		} else {
 		result++;
 		i = loc + strSearch.length();
